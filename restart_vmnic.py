@@ -24,10 +24,8 @@ while(True):
                                                 d[i][1]=d[i][1]+1
                                                 if d[i][1]>3:
                                                         c3=subprocess.Popen("esxcfg-vswitch -l|grep "+c1.split()[3].decode("utf-8"),shell=True, stdout=subprocess.PIPE,stderr=subprocess.PIPE).stdout.read()
-                                                        #v = [ j for j in c3.decode("utf-8").strip('\n').split()[len(str(c3).split())-1].split(',') ]
                                                         v = [ j for j in c3.decode("utf-8").strip("\n").split()[len(c3.decode("utf-8").strip("\n").split())-1].split(',') ]
                                                         for v1 in v:
-                                                                #c4=subprocess.Popen("esxcli network nic down -n "+v1+" \&\& esxcli network nic up -n "+v1,shell=True, stdout=subprocess.PIPE,stderr=subprocess.PIPE).stdout.read()
                                                                 c4=subprocess.call("esxcli network nic down -n "+v1+" && esxcli network nic up -n "+v1, shell=True)
                                                                 c5=subprocess.Popen("logger f80.py "+i+" "+v1+" "+timp,shell=True, stdout=subprocess.PIPE,stderr=subprocess.PIPE).stdout.read()
                                                         d[i][1]=0
